@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="brand">
+                <span class="brand-icon">⬡</span>
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue</p>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="you@example.com">
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+
+            <button onclick="login()" id="Loginbtn" class="btn btn-primary">
+                Login
+            </button>
+
+            <div class="divider"><span>or</span></div>
+
+            <button onclick="register()" id="Registerbtn" class="btn btn-secondary">
+                Create an Account
+            </button>
+        </div>
+    </div>
+
+    <script src="static/js/auth.js"></script>
+</body>
+</html>

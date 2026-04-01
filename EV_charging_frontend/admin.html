@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="static/css/admin.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">Career<span>Admin</span></div>
+        <nav class="dash-list">
+            <ul>
+                <li onclick="location.reload()">Dashboard</li>
+                <li>Manage Stations</li>
+                <li>View Bookings </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        
+        <header class="header">
+            <div class="header-left">
+                <h1>Station Management</h1>
+                <p>Welcome back, Admin</p>
+            </div>
+            <div class="header-right">
+                <button class="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+        </header>
+
+        <div class="panel-grid">
+            <div class="panel">
+                <div class="form-block">
+                    <h2>Add New Station</h2>
+                    <input type="text" id="name" placeholder="Station Name" required>
+                    <input type="text" id="location" placeholder="Location" required>
+                    <input type="number" id="latitude" placeholder="Latitude (e.g. 12.9716)" step="any" min="-90" max="90" required>
+                    <input type="number" id="longitude" placeholder="longitude (e.g. 12.9716)" step="any" min="-90" max="90" required>
+                    <button class="btn-primary" onclick="addStation()">Add Station</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="form-block">
+                    <h2>Create Time Slot</h2>
+                    <select id="station_select" required>
+                        <option value="">Select Station</option>
+                    </select>
+                    <label>Start Time</label>
+                    <input type="datetime-local" id="start_time" required>
+                    <label>End Time</label>
+                    <input type="datetime-local" id="end_time" required>
+                    <button class="btn-primary" onclick="createSlot()">Create Slot</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="Slots_List">
+            <div class="dash-card">
+                <h3>Slots <span>Available</span></h3>
+                <button class="dash-btn" onclick="loadSlots()">&#9889; Load Slots</button>
+                <ul class="dash-list" id="slots">
+                    <p class="empty-note">Click to load slots</p>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <script>
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            alert("Please login first!");
+            window.location.href = "login.html";
+        }
+
+        // 🔥 Check role
+        function parseJwt(token) {
+            const base64Url = token.split('.')[1];
+            const base64 = atob(base64Url);
+            return JSON.parse(base64);
+        }
+
+        const decoded = parseJwt(token);
+
+        if (decoded.role !== "admin") {
+            alert("Access denied!");
+            window.location.href = "dashboard.html";
+        }
+
+        function handleLogout() {
+            localStorage.removeItem("token");
+            window.location.href = "login.html";
+            alert("Logged out!")
+        }
+        </script>
+    <script src="static/js/api.js"></script>
+    <script src="static/js/admin.js"></script>
+
+</body>
+</html>

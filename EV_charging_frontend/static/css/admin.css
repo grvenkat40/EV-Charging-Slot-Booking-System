@@ -1,0 +1,253 @@
+:root {
+    /* --primary-color: #0bbda6; */
+    --bg-light: #f4f7f6;
+    --sidebar-bg: #2c3e50;
+    --text-dark: #333;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    background: var(--bg-light);
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background: var(--sidebar-bg);
+    color: white;
+    position: fixed;
+}
+
+.logo {
+    padding: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.logo span { color: #0bbda6 }
+
+.dash-list ul { padding: 0; margin-top: 20px; }
+
+.dash-list li {
+    padding: 15px 30px;
+    list-style: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dash-list li:hover {
+    background: var(--primary-color);
+    padding-left: 40px;
+}
+
+/* Main Content Styling */
+.main-content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    padding: 40px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.header h1 { margin: 0; color: var(--text-dark); }
+.header p { margin: 5px 0 0; color: #777; }
+
+/* Panels */
+.panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.panel {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.form-block h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background: #0f3d4c;
+    color: #f8f9fa;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #09a38f;
+    transform: translateY(-2px);
+}
+
+.logout-btn {
+    background: transparent;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.Slots_List{
+    margin: 60px;
+}
+
+* 📦 Wrapper */
+.Slots_List {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 🧊 Card */
+.dash-card {
+    width: 600px;
+    background: #fdffff;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 6px solid #86efac;
+    box-shadow: 0 10px 3px black;
+}
+
+/* 🧠 Heading */
+.dash-card h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.dash-card h3 span {
+    background: #d1fae5;
+    color: #065f46;
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+/* ⚡ Button */
+.dash-btn {
+    width: 100%;
+    background: #0f3d4c;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.dash-btn:hover {
+    background: #0c2f3a;
+}
+
+/* 📜 Scrollable List */
+.dash-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 0;
+}
+.dash-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.dash-list::-webkit-scrollbar-track {
+    background: #1e293b;
+    border-radius: 10px;
+}
+
+.dash-list::-webkit-scrollbar-thumb {
+    background: #38f8b8;
+    border-radius: 10px;
+}
+
+.dash-list::-webkit-scrollbar-thumb:hover {
+    background: #0ea5e9;
+}
+
+/* 📍 Slot Item */
+.Slots_List li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #d5dbe0;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+
+/* 🆔 Slot Badge */
+.slot-id-badge {
+    background: #e5e7eb;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-right: 10px;
+}
+
+/* 🕒 Time Text */
+.station-container span {
+    flex: 1;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+/* 🎯 Book Button */
+.slot-btn {
+    background: #34d399;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.slot-btn:hover {
+    background: #10b981;
+}
+
+/* ❌ Booked Label */
+.status-booked {
+    background: #fecaca;
+    color: red;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+/* 💤 Empty */
+.empty-note {
+    text-align: center;
+    color: gray;
+}
