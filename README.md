@@ -89,6 +89,18 @@ A full-stack web application that allows users to book EV charging slots and ena
 | Server       | Uvicorn |
 
 ---
+### Images
+
+## User
+<img width="1348" height="633" alt="Screenshot 2026-04-01 173145" src="https://github.com/user-attachments/assets/ceb611f7-c570-4aee-ba00-08b7722775f6" />
+
+<img width="1355" height="558" alt="Screenshot 2026-04-01 173203" src="https://github.com/user-attachments/assets/8f4201ee-5dc0-4d30-b0a6-74cd95dfc770" />
+
+<img width="1352" height="407" alt="Screenshot 2026-04-01 173227" src="https://github.com/user-attachments/assets/8d1e96ba-f735-4977-a7bf-a5e0f311ee95" />
+
+## Admin
+<img width="1347" height="636" alt="Screenshot 2026-04-01 173251" src="https://github.com/user-attachments/assets/0d819efc-b3c6-4c71-ad87-f2f524a63445" />
+
 
 ## 📂 Project Structure
 ```
