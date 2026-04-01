@@ -44,10 +44,38 @@ A full-stack web application that allows users to book EV charging slots and ena
 
 ## 🏗️ Architecture
 
-
-
-
----
+```
+        ┌───────────────┐
+        │   Frontend    │
+        │ (HTML/CSS/JS)│
+        └──────┬────────┘
+               │ HTTP (Fetch API)
+               ▼
+        ┌───────────────┐
+        │   FastAPI     │
+        │   Backend     │
+        └──────┬────────┘
+               │
+     ┌─────────┴─────────┐
+     │                   │
+     ▼                   ▼
+┌────────────┐     ┌──────────────┐
+│ Auth Layer │     │ Business     │
+│ (JWT)      │     │ Logic        │
+└────────────┘     └──────┬───────┘
+                          │
+                          ▼
+                  ┌──────────────┐
+                  │ SQLAlchemy   │
+                  │ ORM Layer    │
+                  └──────┬───────┘
+                         │
+                         ▼
+                  ┌──────────────┐
+                  │ PostgreSQL   │
+                  │ Database     │
+                  └──────────────┘
+```
 
 ## 🧩 Tech Stack
 
@@ -63,6 +91,7 @@ A full-stack web application that allows users to book EV charging slots and ena
 ---
 
 ## 📂 Project Structure
+```
 EV_charging_backend/
 │
 ├── app/
@@ -85,7 +114,7 @@ EV_charging_frontend/
 ├── static/
 │ ├── js/
 │ └── css/
-
+```
 
 
 ---
@@ -147,41 +176,47 @@ pip install -r requirements.txt
 
 uvicorn app.main:app --reload
 
-### FrontEnd Setup
-
+```
+### 2️⃣ FrontEnd Setup
+```
 cd EV_charging_frontend
 
 python -m http.server 5500
-
 ```
-🧪 API Endpoints
+### 🧪 API Endpoints
+```
 🔐 Auth
 POST /auth/login
+
 👤 Users
 POST /users/ → Register
+
 🏢 Stations
 POST /station/ → Create (Admin)
 GET /station/get_stations
+
 ⚡ Slots
 POST /slots/ → Create (Admin)
 GET /slots/get_slots
+
 📅 Bookings
 POST /bookings/ → Book slot
 GET /bookings/get_my_bookings
 ```
 
-🚨 Challenges Solved
-Prevent double booking (DB locking)
-Handle JWT authentication flow
-Fix CORS & frontend integration issues
-Handle schema mismatch errors
-Implement clean UI state updates
-📈 Future Improvements
-🌍 Map integration (Google Maps)
-🔔 Notifications
-📱 Mobile responsive UI
-☁️ Cloud deployment (AWS / GCP)
-⚡ Real-time updates (WebSockets)
+### 🚨 Challenges Solved
+- Prevent double booking (DB locking)
+- Handle JWT authentication flow
+- Fix CORS & frontend integration issues
+- Handle schema mismatch errors
+- Implement clean UI state updates
+
+### 📈 Future Improvements
+- 🌍 Map integration (Google Maps)
+- 🔔 Notifications
+- 📱 Mobile responsive UI
+- ☁️ Cloud deployment (AWS / GCP)
+- ⚡ Real-time updates (WebSockets)
 
 👨‍💻 Author
 
