@@ -1,13 +1,38 @@
 BASE_URL = "http://127.0.0.1:8000"
 
+function showToast(message){
+    const toastContainer = document.getElementById("notification-container");
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.innerHTML = message;
+
+    toastContainer.appendChild(toast);
+
+    setTimeout(
+        () => {
+            toast.style.opacity = '0';
+            setTimeout(() => {toast.remove();}, 500);
+        }, 3000
+    );
+}
+
 async function login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+    const loginBtn = document.getElementById("Loginbtn");
+    
+
+    if(!email.trim() || !password.trim()){
+        showToast("Please enter both email and password!");
+        return;
+    }
 
     const formData = new URLSearchParams();
 
     formData.append("username", email);
     formData.append("password", password);
+
+    loginBtn.innerText = "Processing...";
 
     const response = await fetch(`${BASE_URL}/auth/login`, {
         method:"POST",

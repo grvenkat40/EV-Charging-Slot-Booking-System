@@ -1,43 +1,357 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-            font-family: Arial;
-            background: #0f172a;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+  background: linear-gradient(135deg, #0d1b2e 0%, #0a2a2a 60%, #0d2b1e 100%);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
 
-        .container {
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 10px;
-            width: 300px;
-            text-align: center;
-        }
+/* ── Navbar ── */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 64px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
 
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: none;
-        }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #3b82f6;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  background: #10b981;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-        button:hover {
-            background: #2563eb;
-        }
+.logo-text {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+}
 
-        .hidden {
-            display: none;
-        }
+.logo-text span {
+  color: #10b981;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #ffffff;
+}
+
+.nav-btn {
+  background: #10b981;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nav-btn:hover {
+  background: #0ea572;
+}
+
+/* ── Page layout ── */
+.page-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+/* ── Badge ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 99px;
+  padding: 5px 14px;
+  margin-bottom: 1rem;
+}
+
+.badge span {
+  color: #10b981;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Register card ── */
+.container {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.container h2 {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.container .subtitle {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+/* ── Form labels ── */
+label {
+  display: block;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  margin-top: 14px;
+}
+
+/* ── Inputs & select ── */
+input[type="email"],
+input[type="password"],
+input[type="text"],
+select {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 12px 14px;
+  color: #e2e8f0;
+  font-size: 14px;
+  outline: none;
+  appearance: none;
+  transition: border-color 0.2s;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+input:focus,
+select:focus {
+  border-color: #10b981;
+}
+
+select option {
+  background: #0d1b2e;
+}
+
+/* ── Hidden admin code ── */
+.hidden {
+  display: none;
+}
+
+/* ── Register button ── */
+#Registerbtn {
+  width: 100%;
+  background: #10b981;
+  border: none;
+  border-radius: 8px;
+  padding: 13px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  letter-spacing: 0.01em;
+  transition: background 0.2s;
+}
+
+#Registerbtn:hover {
+  background: #0ea572;
+}
+
+/* ── Divider ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 1rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.divider span {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 13px;
+}
+
+/* ── Secondary button (Login link) ── */
+.btn-outline {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 12px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  text-align: center;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn-outline a {
+  color: #10b981;
+  text-decoration: none;
+}
+
+/* ── Stats bar ── */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.stat-number.accent {
+  color: #10b981;
+}
+
+.stat-label {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 12px;
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Notifications ── */
+#notification-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 999;
+}
+
+/* ── Notification Container ── */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+/* ── Toast (Glass Style) ── */
+.toast {
+    font-style: italic;
+
+    background: rgba(255, 255, 255, 0.05);
+    color: #e2e8f0;
+    font-weight: bolder;
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+
+    animation: slideIn 0.3s ease-out;
+}
+
+/* ── Success Toast (Green Accent) ── */
+.toast.success {
+    border-left: 4px solid #10b981;
+}
+
+/* ── Error Toast (Red Accent) ── */
+.toast.error {
+    border-left: 4px solid #ef4444;
+}
+
+/* ── Slide In Animation ── */
+@keyframes slideIn {
+    from {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* ── Fade Out Animation (optional) ── */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(120%);
+    }
+}

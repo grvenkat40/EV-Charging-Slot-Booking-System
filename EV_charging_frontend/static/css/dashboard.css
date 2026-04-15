@@ -1,0 +1,258 @@
+:root {
+    --primary-glow: #00f2ff;
+    --bg-dark: #9faac2;
+    --sidebar-bg: #1e293b;
+    --text-main: #f8fafc;
+    --accent-green: #22c55e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+body { 
+    background-color: var(--bg-dark);
+    color: var(--text-main); 
+}
+
+.app-container {
+    background: linear-gradient(135deg, #0d1b2e 0%, #0a2a2a 60%, #0d2b1e 100%);
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    height: 100vh;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 95vh;
+    border-right: 1px solid rgba(247, 250, 250, 0.3);
+}
+
+/* Logo Container */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Icon Box */
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #22c55e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(75, 255, 84, 0.747), rgb(250, 248, 248);
+}
+
+/* SVG Icon */
+.logo-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: white;
+}
+
+/* Text */
+.logo-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fafcff;
+  letter-spacing: 0.5px;
+}
+
+/* Highlight "Ease" */
+.logo-text span {
+  color: #10B981;
+}
+
+.logo:hover .logo-text {
+  color: #06b6d4;
+  transition: 0.3s ease;
+}
+
+.nav-links { 
+    margin-top: 30px;
+    list-style: none; 
+    /* flex-grow: 1;  */
+}
+
+.nav-links li {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center; gap: 12px;
+}
+
+.nav-links li:hover, .nav-links li.active {
+    background: rgb(54, 156, 80, 0.6);
+    color: white;
+}
+
+/* Content Animation */
+.fade-in {
+    animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.logout{
+    margin-top: auto;
+
+}
+.logout .nav-btn {
+  width: 100%;
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout .nav-btn:hover {
+  background: #dc2626;
+}
+
+.main-content{
+    height: 100vh; 
+    overflow-y: auto; /* Allows vertical scrolling for long content */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    stroke-width: thin;
+}
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: green; 
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: #ffffff; 
+    border: 2px solid var(--bg-dark); 
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: rgb(0, 0, 0); 
+    cursor: pointer;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(16, 185, 129, 0.2);
+    border-radius: 10px;
+}
+
+.hero {
+  min-height: 90vh;
+  background-image: url("../images/EV_BG.png");
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  background-blend-mode: overlay;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+/* GRID LAYOUT (better than flex) */
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  width: 100%;
+}
+
+/* LEFT SIDE */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-tag {
+  background: rgba(34,197,94,0.15);
+  color: #22c55e;
+  padding: 6px 12px;
+  border-radius: 20px;
+  width: fit-content;
+  font-size: 13px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(6px);
+}
+
+.hero h1 {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 15px;
+}
+
+.hero h1 em {
+  color: #22c55e;
+  font-style: normal;
+}
+
+.hero p {
+  color: #94a3b8;
+  font-size: 15px;
+  margin-bottom: 25px;
+  max-width: 450px;
+}
+
+/* BUTTONS */
+.hero-actions {
+  margin-bottom: 25px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: none;
+  padding: 12px 22px;
+  margin-right: 12px;
+  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(34,197,94,0.3);
+}
+
+.btn-outline {
+  border: 1px solid #22c55e;
+  background: transparent;
+  color: #22c55e;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* DID YOU KNOW (GLASS EFFECT 🔥) */
+.did-you-know {
+  padding: 16px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  max-width: 400px;
+}
+
+.did-you-know h4 {
+  margin-bottom: 5px;
+}

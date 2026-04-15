@@ -8,6 +8,22 @@ function getHeaders() {
     };
 }
 
+function showToast(message){
+    const toastContainer = document.getElementById("notification-container");
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.innerHTML = message;
+
+    toastContainer.appendChild(toast);
+
+    setTimeout(
+        () => {
+            toast.style.opacity = '0';
+            setTimeout(() => {toast.remove();}, 500);
+        }, 3000
+    );
+}
+
 async function  loadStation() {
     const res = await fetch(`${BASE_URL}/station/get_stations`, {
         headers:getHeaders()
@@ -94,13 +110,13 @@ async function bookSlot(slotId) {
     const data = await res.json();
 
     if (res.ok) {
-        alert("✅ Slot booked successfully!");
+        showToast("✅ Slot booked successfully!");
 
         // 🔥 Refresh slots after booking
         loadSlots();
 
     } else {
-        alert(data.detail || "❌ Booking failed!");
+        showToast(data.detail || "❌ Booking failed!");
     }
 }
 

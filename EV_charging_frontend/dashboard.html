@@ -1,231 +1,15 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/dashboard.css">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Stations</h2>
-    <button onclick="loadStation()">Load Stations</button>
-    <ul id="stations"></ul>
-
-    <h2>Slots</h2>
-    <button onclick="loadSlots()">Load Slots</button>
-    <ul id="slots"></ul>
-
-    <h2>My Bookings</h2>
-    <button onclick="loadBookings()">My Bookings</button>
-    <ul id="bookings"></ul>
-
-    <script>
-        const token = localStorage.getItem("token");
-        if(!token){
-            alert("Please login first!!!");
-            window.location.href = "login.html";
-        }
-    </script>
-    <script src="static/js/api.js"></script>
-    <script src="static/js/dashboard.js"></script>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ChargEase — EV Charging Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --navy:   #0f1f3d;
-      --navy2:  #162848;
-      --teal:   #0d9e8a;
-      --teal2:  #0bbda6;
-      --gold:   #e2a84b;
-      --cream:  #f7f4ef;
-      --text:   #1a1a2e;
-      --muted:  #6b7280;
-      --white:  #ffffff;
-      --shadow: 0 4px 24px rgba(15,31,61,.10);
-      --radius: 10px;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Source Sans 3', sans-serif; background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.6; }
-
-    /* HEADER */
-    header { background: var(--navy); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.25); }
-    nav { max-width: 1140px; margin: auto; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 68px; }
-    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .logo-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--teal); display: flex; align-items: center; justify-content: center; }
-    .logo-icon svg { width: 20px; height: 20px; fill: var(--white); }
-    .logo-text { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--white); letter-spacing: .5px; }
-    .logo-text span { color: var(--teal2); }
-    nav ul { list-style: none; display: flex; gap: 32px; }
-    nav ul a { color: rgba(255,255,255,.72); text-decoration: none; font-size: .92rem; font-weight: 500; letter-spacing: .3px; transition: color .2s; }
-    nav ul a:hover { color: var(--teal2); }
-    .nav-btn { background: var(--teal); color: var(--white); border: none; padding: 9px 22px; border-radius: 6px; font-family: inherit; font-size: .9rem; font-weight: 600; cursor: pointer; letter-spacing: .3px; transition: background .2s, transform .15s; }
-    .nav-btn:hover { background: var(--teal2); transform: translateY(-1px); }
-
-    /* HERO */
-    .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 55%, #0d3b2e 100%); color: var(--white); padding: 90px 24px 80px; text-align: center; position: relative; overflow: hidden; }
-    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(13,158,138,.18) 0%, transparent 70%); }
-    .hero-tag { display: inline-block; background: rgba(13,158,138,.18); border: 1px solid rgba(13,189,166,.35); color: var(--teal2); font-size: .82rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 16px; border-radius: 50px; margin-bottom: 22px; }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.2; font-weight: 700; max-width: 640px; margin: 0 auto 18px; }
-    .hero h1 em { color: var(--teal2); font-style: normal; }
-    .hero p { color: rgba(255,255,255,.72); max-width: 520px; margin: 0 auto 36px; font-size: 1.05rem; font-weight: 300; }
-    .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary { background: var(--teal); color: var(--white); border: none; padding: 13px 32px; border-radius: 7px; font-family: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background .2s, transform .15s, box-shadow .2s; box-shadow: 0 4px 14px rgba(13,158,138,.45); }
-    .btn-primary:hover { background: var(--teal2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13,158,138,.55); }
-    .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,.35); padding: 13px 32px; border-radius: 7px; font-family: inherit; font-size: 1rem; font-weight: 500; cursor: pointer; transition: border-color .2s, background .2s, transform .15s; }
-    .btn-outline:hover { border-color: var(--teal2); background: rgba(13,158,138,.1); transform: translateY(-2px); }
-    .hero-stats { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; margin-top: 56px; position: relative; }
-    .stat { text-align: center; }
-    .stat strong { display: block; font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--white); }
-    .stat span { font-size: .85rem; color: rgba(255,255,255,.55); letter-spacing: .5px; }
-
-    /* SHARED */
-    section { padding: 72px 24px; }
-    .container { max-width: 1140px; margin: auto; }
-    .section-label { font-size: .78rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--navy); margin-bottom: 14px; line-height: 1.25; }
-    .section-sub { color: var(--muted); font-size: 1rem; max-width: 520px; font-weight: 400; }
-    .section-head { margin-bottom: 48px; }
-
-    /* FEATURES */
-    .features-bg { background: var(--white); }
-    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
-    .feature-card { background: var(--cream); border-radius: var(--radius); padding: 32px 28px; border: 1px solid rgba(15,31,61,.07); transition: box-shadow .2s, transform .2s; }
-    .feature-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
-    .feature-icon { width: 48px; height: 48px; border-radius: 10px; background: rgba(13,158,138,.12); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
-    .feature-icon svg { width: 24px; height: 24px; stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .feature-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
-    .feature-card p { color: var(--muted); font-size: .93rem; line-height: 1.6; }
-
-    /* DASHBOARD */
-    .dash-section { background: var(--cream); }
-    .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-    @media(max-width:780px){ .dash-grid { grid-template-columns: 1fr; } }
-    .dash-card { background: var(--white); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); border: 1px solid rgba(15,31,61,.06); border-left: 5px solid #a1ebc0; }
-    .dash-card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
-    .dash-card h3 span { font-size: .75rem; background: rgba(13,158,138,.1); color: var(--teal); padding: 3px 10px; border-radius: 50px; font-family: 'Source Sans 3', sans-serif; font-weight: 600; }
-    .dash-btn { width: 100%; padding: 10px 0; background: var(--navy); color: var(--white); border: none; border-radius: 6px; font-family: inherit; font-size: .9rem; font-weight: 600; cursor: pointer; letter-spacing: .3px; transition: background .2s; margin-bottom: 16px; }
-    .dash-btn:hover { background: var(--teal); }
-    .dash-list { list-style: none; min-height: 80px; max-height: 400px; overflow-y: auto;}
-    .dash-list li { padding: 9px 12px; border-radius: 6px; background: var(--cream); margin-bottom: 6px; font-size: .9rem; color: var(--text); display: flex; align-items: center; gap: 8px; transition: background 0.3s ease, transform 0.2s ease;}
-    .dash-list li:hover { background: #85e6d9; }
-    .slot-id-badge {
-      background: #eee;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 0.8rem;
-  }
-
-      .dash-list::-webkit-scrollbar {
-        width: 6px;
-      }
-
-      .dash-list::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      .dash-list::-webkit-scrollbar-thumb {
-        background: #1a2332;
-        border-radius: 3px;
-      }
-    .dash-list li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
-    .empty-note { color: var(--muted); font-size: .88rem; text-align: center; padding: 22px 0; font-style: italic; }
-
-      .bookings{
-        background: var(--white); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); border: 1px solid rgba(15,31,61,.06); border-left: 5px solid #a1ebc0;
-        margin-top: 100px;
-        align-items: center;
-        margin: 80px auto; 
-        width: 90%;        
-        max-width: 600px;
-      }
-
-    /* The base button style */
-    .slot-btn {
-        background-color: #41ebb8; /* Professional Red */
-        color: rgb(27, 27, 27);
-        border: none;
-        padding: 8px 16px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        outline: none;
-    }
-
-    /* Hover effect: darkens slightly and lifts */
-    .slot-btn:hover {
-        background-color: #45e989;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-    }
-
-    /* Active click effect */
-    .slot-btn:active {
-        transform: translateY(0);
-    }
-
-    /* Style for when the button is disabled (during the fetch call) */
-    .slot-btn:disabled {
-        background-color: #cccccc;
-        cursor: not-allowed;
-        transform: none;
-        box-shadow: none;
-    }
-
-    /* Style for the "Booked" span text */
-    .status-booked {
-        color: #cc0000;
-        font-weight: bold;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        display: inline-block; 
-        cursor: not-allowed;
-        background-color: #ffe6e6;
-        padding: 2px 8px;
-        border-radius: 4px;
-    }
-
-    /* HOW IT WORKS */
-    .how-bg { background: var(--white); }
-    .steps { display: flex; gap: 0; position: relative; flex-wrap: wrap; }
-    .steps::before { content: ''; position: absolute; top: 32px; left: 72px; right: 72px; height: 2px; background: linear-gradient(90deg, var(--teal), var(--gold)); z-index: 0; }
-    .step { flex: 1; min-width: 180px; text-align: center; padding: 0 20px; position: relative; z-index: 1; }
-    .step-num { width: 64px; height: 64px; border-radius: 50%; background: var(--navy); color: var(--white); font-family: 'Playfair Display', serif; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; border: 3px solid var(--cream); box-shadow: 0 0 0 3px var(--teal); transition: 0.3s ease;}
-    .step-num:hover {transform: scale(1.2);}
-    .step h4 { font-family: 'Playfair Display', serif; color: var(--navy); margin-bottom: 8px; }
-    /* .step-num:hover .step h4:hover{transform: scale(1.2);} */
-    .step p { color: var(--muted); font-size: .9rem; }
-
-    /* CTA */
-    .cta-strip { background: linear-gradient(90deg, var(--navy) 0%, #0d3b2e 100%); padding: 60px 24px; text-align: center; }
-    .cta-strip h2 { font-family: 'Playfair Display', serif; color: var(--white); font-size: clamp(1.4rem, 3vw, 1.9rem); margin-bottom: 10px; }
-    .cta-strip p { color: rgba(255,255,255,.65); margin-bottom: 28px; }
-
-    /* FOOTER */
-    footer { background: var(--navy); color: rgba(255,255,255,.5); text-align: center; padding: 28px 24px; font-size: .85rem; }
-    footer a { color: var(--teal2); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-
-    @media(max-width:620px){
-      nav ul { display: none; }
-      .steps::before { display: none; }
-      .step { min-width: 100%; }
-    }
-  </style>
+  <link rel="stylesheet" href="static/css/dashboard.css">
 </head>
-<body>
+<!-- <body>
 
-<!-- HEADER -->
 <header>
   <nav>
     <a href="#" class="logo">
@@ -243,7 +27,6 @@
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div style="position:relative;z-index:1;">
     <div class="hero-tag">&#9889; Smart EV Charging Network</div>
@@ -262,7 +45,6 @@
   </div>
 </section>
 
-<!-- FEATURES -->
 <section class="features-bg" id="features">
   <div class="container">
     <div class="section-head">
@@ -317,7 +99,6 @@
   </div>
 </section>
 
-<!-- DASHBOARD -->
 <section class="dash-section" id="dashboard">
   <div class="container">
     <div class="section-head">
@@ -354,7 +135,6 @@
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section class="how-bg" id="how">
   <div class="container">
     <div class="section-head" style="text-align:center;">
@@ -386,7 +166,6 @@
   </div>
 </section>
 
-<!-- CTA STRIP -->
 <div class="cta-strip">
   <div class="container">
     <h2>Ready to Charge Smarter?</h2>
@@ -395,12 +174,12 @@
   </div>
 </div>
 
-<!-- FOOTER -->
+<div id="notification-container"></div>
+
 <footer>
   <p>&copy; 2026 ChargEase. All rights reserved. &nbsp;|&nbsp; <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Support</a></p>
 </footer>
 
-<!-- AUTH GUARD -->
 <script>
   const token = localStorage.getItem("token");
   if (!token) {
@@ -415,5 +194,211 @@
 <script src="static/js/api.js"></script>
 <script src="static/js/dashboard.js"></script>
 
+</body> -->
+
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L4.09 12.26A1 1 0 005 14h7v8l8.91-10.26A1 1 0 0020 10h-7V2z"/></svg>
+        </div>
+        <span class="logo-text">Charge<span style="font-style: italic;">Ease</span></span>
+      </a>
+      <ul class="nav-links">
+          <li class="active" data-module="dashboard"><i class="ri-dashboard-line"></i> Dashboard</li>
+          <li data-module="stations"><i class="ri-map-pin-line"></i> Stations</li>
+          <li data-module="slots"><i class="ri-thunderstorms-line"></i> Slots</li>
+          <li data-module="bookings"><i class="ri-book-read-line"></i> Bookings</li>
+      </ul>
+      <div class="logout">
+          <button class="nav-btn" onclick="handleLogout()">Logout</button>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <section class="hero">
+        <div class="hero-content">
+
+          <!-- LEFT -->
+          <div class="hero-left">
+          <div class="hero-tag">⚡ Smart EV Charging Network</div>
+
+          <h1>
+            Power Your Journey,<br>
+            <span style="color: #10B981;">Seamlessly Charged</span>
+          </h1>
+
+          <p>
+            Find nearby stations, book your slot instantly, and manage your EV charging like a pro.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn-primary">Go to Dashboard</button>
+            <button class="btn-outline">How It Works</button>
+          </div>
+
+          <div class="did-you-know">
+            <h4>💡 Did You Know?</h4>
+            <p>EV users reduce fuel costs by <strong>70%</strong> and cut carbon emissions drastically.</p>
+          </div>
+          </div>
+
+        </div>
+      </section>
+
+<section class="features-bg" id="features">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Why ChargEase</div>
+      <h2 class="section-title">Everything You Need,<br>All in One Place</h2>
+      <p class="section-sub">From real-time slot availability to booking history — we keep your EV life simple.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/></svg>
+        </div>
+        <h3>Live Station Map</h3>
+        <p>Browse all charging stations in real time with live availability status and distance from your location.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </div>
+        <h3>Instant Slot Booking</h3>
+        <p>Reserve your charging slot in advance. No more waiting in queues — your spot is guaranteed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>Booking History</h3>
+        <p>Access a full log of all past and upcoming bookings with status and pricing breakdown.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L4.09 12.26A1 1 0 005 14h7v8l8.91-10.26A1 1 0 0020 10h-7V2z"/></svg>
+        </div>
+        <h3>Fast Charging Slots</h3>
+        <p>Filter stations by charging speed — Level 2 or DC Fast Charge — to match your schedule.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <h3>Smart Notifications</h3>
+        <p>Get alerts when your charge is complete, a slot opens up, or a booking is confirmed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h3>Multi-Vehicle Support</h3>
+        <p>Manage bookings across multiple vehicles from a single account with per-vehicle profiles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dash-section" id="dashboard">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Your Dashboard</div>
+      <h2 class="section-title">Manage Everything Here</h2>
+      <p class="section-sub">Load stations, browse available slots, and track all your bookings at a glance.</p>
+    </div>
+    <div class="dash-grid">
+      <div class="dash-card">
+        <h3>Stations <span>Live</span></h3>
+        <button class="dash-btn" onclick="loadStation()">&#128205; Load Stations</button>
+        <ul class="dash-list" id="stations">
+          <p class="empty-note">Click to load stations</p>
+        </ul>
+      </div>
+      <div class="dash-card">
+        <h3>Slots <span>Available</span></h3>
+        <button class="dash-btn" onclick="loadSlots()">&#9889; Load Slots</button>
+        <ul class="dash-list" id="slots">
+          <p class="empty-note">Click to load slots</p>
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+  <div class="bookings">
+      <div class="booking-card">
+        <h3>My Bookings <span>History</span></h3>
+        <button class="dash-btn" onclick="loadBookings()">&#128203; My Bookings</button>
+        <ul class="dash-list" id="bookings">
+          <p class="empty-note">Click to load bookings</p>
+        </ul>
+      </div>
+  </div>
+</section>
+
+<section class="how-bg" id="how">
+  <div class="container">
+    <div class="section-head" style="text-align:center;">
+      <div class="section-label">Simple Process</div>
+      <h2 class="section-title">Charge in 4 Easy Steps</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Create Account</h4>
+        <p>Sign up in under a minute and link your EV profile.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Find a Station</h4>
+        <p>Browse nearby stations and check live slot availability.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Book Your Slot</h4>
+        <p>Reserve your preferred time slot instantly from the app.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Charge &amp; Go</h4>
+        <p>Arrive, plug in, and drive away — fully charged.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div class="container">
+    <h2>Ready to Charge Smarter?</h2>
+    <p>Join thousands of EV drivers already using ChargEase every day.</p>
+    <button class="btn-primary" onclick="document.getElementById('dashboard').scrollIntoView({behavior:'smooth'})">Open My Dashboard</button>
+  </div>
+</div>
+
+<div id="notification-container"></div>
+
+<footer>
+  <p>&copy; 2026 ChargEase. All rights reserved. &nbsp;|&nbsp; <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Support</a></p>
+</footer>
+    </main>
+  </div>
+
+
+<script>
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("Please login first!!!");
+    window.location.href = "login.html";
+  }
+  function handleLogout() {
+    localStorage.removeItem("token");
+    window.location.href = "login.html";
+  }
+</script>
+<script src="static/js/api.js"></script>
+<script src="static/js/dashboard.js"></script>
+<script src="static/js/dashboard.js"></script>
 </body>
+
 </html>

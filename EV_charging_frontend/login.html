@@ -7,36 +7,97 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="login-wrapper">
-        <div class="login-card">
-            <div class="brand">
-                <span class="brand-icon">⬡</span>
-                <h2>Welcome Back</h2>
-                <p>Sign in to continue</p>
+
+    <!-- 🔥 Navbar (same as register page) -->
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-icon">L</div>
+            <div class="logo-text">Log<span>in</span></div>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+
+        <button class="nav-btn">Get Started</button>
+    </nav>
+
+    <!-- 🔥 Main Wrapper -->
+    <div class="page-wrapper">
+
+        <!-- Badge -->
+        <div class="badge">
+            <span>Secure Login</span>
+        </div>
+
+        <!-- Login Card -->
+        <div class="login-wrapper">
+            <div class="login-card">
+
+                <!-- Brand -->
+                <div class="brand">
+                    <span class="brand-icon">⬡</span>
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to continue</p>
+                </div>
+
+                <!-- Email -->
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="you@example.com">
+                </div>
+
+                <!-- Password -->
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="••••••••">
+                </div>
+
+                <!-- Login Button -->
+                <button onclick="login()" id="Loginbtn" class="btn btn-primary">
+                    Login
+                </button>
+
+                <!-- Divider -->
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <!-- Register Button -->
+                <button onclick="window.location.href='register.html'" 
+                        id="Registerbtn" 
+                        class="btn btn-secondary">
+                    Create an Account
+                </button>
+
             </div>
+        </div>
 
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="you@example.com">
-            </div>
+    </div>
 
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="••••••••">
-            </div>
-
-            <button onclick="login()" id="Loginbtn" class="btn btn-primary">
-                Login
-            </button>
-
-            <div class="divider"><span>or</span></div>
-
-            <button onclick="register()" id="Registerbtn" class="btn btn-secondary">
-                Create an Account
-            </button>
+    <!-- Stats bar (same style as register page) -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">Users</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number accent">99%</div>
+            <div class="stat-label">Secure</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Support</div>
         </div>
     </div>
 
+    <!-- Notifications -->
+    <div id="notification-container"></div>
+
+    <!-- JS -->
     <script src="static/js/auth.js"></script>
+
 </body>
 </html>
