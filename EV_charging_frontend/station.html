@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Station Slots</title>
+  <link rel="stylesheet" href="static/css/station_style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2 id="stationTitle">Station</h2>
+
+    <div id="slots" class="slots-list"></div>
+  </div>
+
+    <button class="back-btn" onclick="window.history.back()">⬅ Back</button>
+  <script>
+        window.onload = () => {
+            const params = new URLSearchParams(window.location.search);
+
+            const stationId = params.get("id");
+            const stationName = params.get("name");
+
+            console.log("Station ID:", stationId);
+            console.log("Station Name:", stationName);
+
+            if (!stationId) {
+                document.getElementById("stationTitle").innerText = "❌ No station selected";
+                return;
+            }
+
+            // Call your function
+            loadSlots(stationId, stationName);
+        };
+    </script>
+  <script src="static/js/station.js"></script>
+</body>
+</html>
