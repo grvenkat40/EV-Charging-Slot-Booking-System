@@ -92,11 +92,14 @@ A full-stack web application that allows users to book EV charging slots and ena
 ### Images
 
 ## User
-<img width="1348" height="633" alt="Screenshot 2026-04-01 173145" src="https://github.com/user-attachments/assets/ceb611f7-c570-4aee-ba00-08b7722775f6" />
+<img width="1365" height="634" alt="Screenshot 2026-04-17 145714" src="https://github.com/user-attachments/assets/cb128747-3590-4cb4-85b2-c96c0d8845e8" />
 
-<img width="1355" height="558" alt="Screenshot 2026-04-01 173203" src="https://github.com/user-attachments/assets/8f4201ee-5dc0-4d30-b0a6-74cd95dfc770" />
+<img width="1362" height="636" alt="Screenshot 2026-04-17 145730" src="https://github.com/user-attachments/assets/4b1b8f33-3a99-487c-bf6a-64d5159c1b31" />
 
-<img width="1352" height="407" alt="Screenshot 2026-04-01 173227" src="https://github.com/user-attachments/assets/8d1e96ba-f735-4977-a7bf-a5e0f311ee95" />
+<img width="1365" height="632" alt="Screenshot 2026-04-17 145745" src="https://github.com/user-attachments/assets/b1391445-9e5d-494e-9764-0d7dbb2238bf" />
+
+<img width="1362" height="636" alt="Screenshot 2026-04-17 145813" src="https://github.com/user-attachments/assets/882306bb-4d56-40c3-839e-58daed9ea4df" />
+
 
 ## Admin
 <img width="1347" height="636" alt="Screenshot 2026-04-01 173251" src="https://github.com/user-attachments/assets/0d819efc-b3c6-4c71-ad87-f2f524a63445" />
