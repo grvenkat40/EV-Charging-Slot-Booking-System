@@ -206,10 +206,10 @@
         <span class="logo-text">Charge<span style="font-style: italic;">Ease</span></span>
       </a>
       <ul class="nav-links">
-          <li class="active" data-module="dashboard"><i class="ri-dashboard-line"></i> Dashboard</li>
-          <li data-module="stations"><i class="ri-map-pin-line"></i> Stations</li>
-          <li data-module="slots"><i class="ri-thunderstorms-line"></i> Slots</li>
-          <li data-module="bookings"><i class="ri-book-read-line"></i> Bookings</li>
+          <a href="#hero" class="active" data-module="dashboard"><i class="ri-dashboard-line"></i> Dashboard</a>
+          <a href="#station_List" data-module="stations"><i class="ri-map-pin-line"></i> Stations</a>
+          <a href="#station_List" data-module="slots"><i class="ri-thunderstorms-line"></i> Slots</a>
+          <a href="#booking_List" data-module="bookings"><i class="ri-book-read-line"></i> Bookings</a>
       </ul>
       <div class="logout">
           <button class="nav-btn" onclick="handleLogout()">Logout</button>
@@ -217,7 +217,7 @@
     </nav>
 
     <main class="main-content">
-      <section class="hero">
+      <section class="hero" id="hero">
         <div class="hero-content">
 
           <!-- LEFT -->
@@ -302,7 +302,7 @@
       </section>
 
       
-      <section class="dash-card">
+      <section class="dash-card" id="station_List">
 
         <!-- HEADER -->
         <div class="dash-header">
@@ -349,7 +349,7 @@
 
       </section>
 
-      <section class="bookings">
+      <section class="bookings" id="booking_List">
         <div class="booking-card">
           <!-- HEADER -->
           <div class="booking-header">
@@ -440,6 +440,15 @@
     localStorage.removeItem("token");
     window.location.href = "login.html";
   }
+  document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', function() {
+          // 1. Remove 'active' class from the current active link
+          document.querySelector('.nav-links a.active')?.classList.remove('active');
+          
+          // 2. Add 'active' class to the clicked link
+          this.classList.add('active');
+      });
+  });
 </script>
 <script src="static/js/api.js"></script>
 <script src="static/js/dashboard.js"></script>

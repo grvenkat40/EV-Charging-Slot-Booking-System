@@ -11,6 +11,7 @@ function getHeaders() {
     };
 }
 
+
 function showToast(message){
     const toastContainer = document.getElementById("notification-container");
     const toast = document.createElement("div");
